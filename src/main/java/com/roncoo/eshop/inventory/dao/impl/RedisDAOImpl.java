@@ -29,4 +29,9 @@ public class RedisDAOImpl implements RedisDAO {
     public String get(String key) {
         return stringRedisTemplate.opsForValue().get(key);
     }
+
+    @Override
+    public void delete(String key) {
+        stringRedisTemplate.delete(key);
+    }
 }
