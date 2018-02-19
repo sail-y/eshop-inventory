@@ -4,7 +4,9 @@ import com.roncoo.eshop.inventory.thread.RequestProcessorThreadPool;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 请求内存队列
@@ -17,6 +19,11 @@ public class RequestQueue {
      * 内存队列
      */
     private List<ArrayBlockingQueue<Request>> queues = new ArrayList<>();
+
+    /**
+     * 标识位map
+     */
+    private Map<Integer, Boolean> flagMap = new ConcurrentHashMap<Integer, Boolean>();
 
 
     private static class Singleton {
@@ -66,5 +73,9 @@ public class RequestQueue {
      */
     public ArrayBlockingQueue<Request> getQueue(int index) {
         return queues.get(index);
+    }
+
+    public Map<Integer, Boolean> getFlagMap() {
+        return flagMap;
     }
 }
